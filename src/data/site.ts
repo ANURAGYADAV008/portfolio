@@ -15,7 +15,7 @@ export const site = {
   email: "hello@example.com", // TODO: replace with your real email
   resume: "/resume.pdf",
   links: [
-    { label: "github", url: "https://github.com/anurag" }, // TODO: replace
+    { label: "github", url: "https://github.com/ANURAGYADAV008" },
     { label: "linkedin", url: "https://www.linkedin.com/in/anurag" }, // TODO: replace
     { label: "email", url: "mailto:hello@example.com" }, // TODO: replace
   ],
@@ -36,7 +36,7 @@ export const projects: readonly Project[] = [
     description:
       "a real-time analytics dashboard for side projects with charts, alerts, and weekly digests",
     stack: ["Next.js", "TypeScript", "PostgreSQL"],
-    repo: "https://github.com/anurag/devboard",
+    repo: "https://github.com/ANURAGYADAV008/devboard",
     live: "https://devboard.example.com",
     status: "active",
   },
@@ -45,7 +45,7 @@ export const projects: readonly Project[] = [
     description:
       "a markdown-first blog engine that renders posts in a retro terminal UI",
     stack: ["Node.js", "Markdown", "CLI"],
-    repo: "https://github.com/anurag/termblog",
+    repo: "https://github.com/ANURAGYADAV008/termblog",
     status: "active",
   },
   {
@@ -53,7 +53,7 @@ export const projects: readonly Project[] = [
     description:
       "a keyboard-first snippet manager with fuzzy search and fully offline storage",
     stack: ["React", "TypeScript", "IndexedDB"],
-    repo: "https://github.com/anurag/snipkeep",
+    repo: "https://github.com/ANURAGYADAV008/snipkeep",
     status: "wip",
   },
 ];
