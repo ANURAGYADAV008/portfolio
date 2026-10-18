@@ -1,0 +1,140 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  color-scheme: light;
+  --nn-bg: #f7f8fc;
+  --nn-panel: #ffffff;
+  --nn-panel2: #eceff6;
+  --nn-line: #e2e6f0;
+  --nn-line2: #c8d0e2;
+  --nn-fg: #15203b;
+  --nn-muted: #5a6478;
+  --nn-violet: #4f46e5;
+  --nn-cyan: #0d9488;
+  --nn-emerald: #0d9488;
+  --nn-amber: #b45309;
+  --nn-rose: #e11d48;
+}
+
+.dark {
+  color-scheme: dark;
+  --nn-bg: #090e1c;
+  --nn-panel: #101832;
+  --nn-panel2: #1a2340;
+  --nn-line: #22304f;
+  --nn-line2: #35426b;
+  --nn-fg: #e8ecf6;
+  --nn-muted: #98a2bd;
+  --nn-violet: #818cf8;
+  --nn-cyan: #2dd4bf;
+  --nn-emerald: #2dd4bf;
+  --nn-amber: #fbbf24;
+  --nn-rose: #fb7185;
+}
+
+@theme inline {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, "SFMono-Regular", Menlo,
+    Consolas, monospace;
+
+  --color-nn-bg: var(--nn-bg);
+  --color-nn-panel: var(--nn-panel);
+  --color-nn-panel2: var(--nn-panel2);
+  --color-nn-line: var(--nn-line);
+  --color-nn-line2: var(--nn-line2);
+  --color-nn-fg: var(--nn-fg);
+  --color-nn-muted: var(--nn-muted);
+  --color-nn-violet: var(--nn-violet);
+  --color-nn-cyan: var(--nn-cyan);
+  --color-nn-emerald: var(--nn-emerald);
+  --color-nn-amber: var(--nn-amber);
+  --color-nn-rose: var(--nn-rose);
+}
+
+@keyframes blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes flow {
+  to {
+    stroke-dashoffset: -13;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@utility caret-blink {
+  animation: blink 1.1s steps(1) infinite;
+}
+
+@utility animate-rise {
+  animation: rise 0.5s ease-out both;
+}
+
+/* Animated SVG signal lines between pipeline stages. */
+.flow-line {
+  fill: none;
+  stroke: var(--nn-cyan);
+  stroke-width: 1.5;
+  stroke-dasharray: 5 8;
+  stroke-linecap: round;
+  animation: flow 1.1s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flow-line {
+    animation: none;
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-nn-bg font-sans text-nn-fg antialiased;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--nn-violet) 26%, transparent);
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--nn-line2) transparent;
+  }
+
+  *::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: var(--nn-line);
+    border: 2px solid var(--nn-bg);
+    border-radius: 999px;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background: var(--nn-line2);
+  }
+
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
