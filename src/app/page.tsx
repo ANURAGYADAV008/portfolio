@@ -1,4 +1,4 @@
-import { ThemeToggle } from "@/components/theme-toggle";
+import { SiteNav } from "@/components/site-nav";
 import { TransformerDemo } from "@/components/transformer-demo";
 import { site } from "@/data/site";
 
@@ -19,27 +19,7 @@ export default function Home() {
           <span className="text-nn-fg">decoder</span> that writes the{" "}
           <span className="text-nn-fg">answer</span> one token at a time.
         </p>
-        <nav className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3 text-xs">
-          {site.links.map((link) => (
-            <a
-              key={link.label}
-              href={link.url}
-              target={link.url.startsWith("http") ? "_blank" : undefined}
-              rel={link.url.startsWith("http") ? "noreferrer" : undefined}
-              className="text-nn-muted transition-colors hover:text-nn-fg"
-            >
-              {link.label}
-            </a>
-          ))}
-          <a
-            href={site.resume}
-            download
-            className="inline-flex h-11 items-center rounded-lg border border-nn-violet/40 bg-nn-violet/5 px-3.5 font-medium text-nn-violet transition-colors hover:bg-nn-violet/10"
-          >
-            resume.pdf ↓
-          </a>
-          <ThemeToggle />
-        </nav>
+        <SiteNav />
       </header>
 
       <TransformerDemo />
