@@ -16,7 +16,10 @@ export const site = {
   resume: "/resume.pdf",
   links: [
     { label: "github", url: "https://github.com/ANURAGYADAV008" },
-    { label: "linkedin", url: "https://www.linkedin.com/in/anurag" }, // TODO: replace
+    {
+      label: "linkedin",
+      url: "https://www.linkedin.com/in/anurag-yadav-3bb3a1329",
+    },
     { label: "email", url: "mailto:hello@example.com" }, // TODO: replace
   ],
 } as const;
