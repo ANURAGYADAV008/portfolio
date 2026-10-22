@@ -1,22 +1,17 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Moon, Sun } from "@/components/icons";
 
 export function ThemeToggle() {
-  const [dark, setDark] = useState(false);
-
-  useEffect(() => {
-    setDark(document.documentElement.classList.contains("dark"));
-  }, []);
-
   function toggle() {
-    const next = !dark;
-    setDark(next);
-    document.documentElement.classList.toggle("dark", next);
+    const root = document.documentElement;
+    const next = !root.classList.contains("dark");
+    root.classList.toggle("dark", next);
+
     try {
       localStorage.setItem("theme", next ? "dark" : "light");
     } catch {
-      // storage can be unavailable — the toggle still works for this session
+      // Storage can be unavailable; the toggle still works for this session.
     }
   }
 
@@ -24,11 +19,12 @@ export function ThemeToggle() {
     <button
       type="button"
       onClick={toggle}
-      aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
-      title={dark ? "Switch to light mode" : "Switch to dark mode"}
-      className="flex size-10 items-center justify-center rounded-full border border-nn-line text-sm text-nn-muted transition-colors hover:border-nn-violet hover:text-nn-violet"
+      aria-label="Toggle color theme"
+      title="Toggle color theme"
+      className="flex size-9 items-center justify-center rounded-full border border-line text-muted transition-colors hover:border-line-strong hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
     >
-      {dark ? "☾" : "☀"}
+      <Sun className="size-4 dark:hidden" />
+      <Moon className="hidden size-4 dark:block" />
     </button>
   );
 }

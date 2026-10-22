@@ -1,81 +1,68 @@
-/**
- * Placeholder content — edit freely.
- * This feeds the scripted answers in src/data/qa.ts.
- */
+import type { BrandIconSlug } from "@/data/brand-icons";
+
+export type SocialIcon = BrandIconSlug | "mail";
+
+export type SocialLink = {
+  label: string;
+  href: string;
+  icon: SocialIcon;
+};
 
 export const site = {
-  name: "Anurag",
-  handle: "anurag",
-  role: "Full-Stack Developer",
-  tagline: "I build fast, thoughtful web experiences.",
-  bio: [
-    "I'm a developer who likes turning ideas into fast, accessible web apps — from the first sketch to the final deploy.",
-    "When I'm not coding, I'm probably reading about databases, tweaking my dotfiles, or shipping side projects.",
-  ],
-  email: "hello@example.com", // TODO: replace with your real email
+  name: "Anurag Yadav",
+  firstName: "Anurag",
+  monogram: "AY",
+  role: "Software Developer",
+  focus: "Backend engineering & applied AI",
+  focusAreas: ["RAG systems", "LangGraph agents", "LLM fine-tuning"],
+  location: "Greater Noida, India",
+  availability: "Open to work",
+  tagline:
+    "I build the backend and AI systems that make a product actually work.",
+  email: "anuragyadav05556@gmail.com",
   resume: "/resume.pdf",
-  links: [
-    { label: "github", url: "https://github.com/ANURAGYADAV008" },
-    {
-      label: "linkedin",
-      url: "https://www.linkedin.com/in/anurag-yadav-3bb3a1329",
-    },
-    { label: "email", url: "mailto:hello@example.com" }, // TODO: replace
+  githubUser: "ANURAGYADAV008",
+  githubUrl: "https://github.com/ANURAGYADAV008",
+  education: {
+    degree: "B.Tech CSE (Data Science)",
+    school: "Galgotias College, Greater Noida",
+    period: "2023 — 2027",
+  },
+  summary: [
+    "I'm a software developer focused on backend engineering and applied AI. I like the parts of a product that have to hold up: retrieval pipelines, agent workflows, APIs, data models, and the interface on top.",
+    "Recently I've been building RAG systems with hybrid search, LangGraph agents, and fine-tuned small language models. I care about clean APIs, good data models, and the unglamorous details that make a product feel solid.",
+  ],
+  stats: [
+    { value: "1,000+", label: "DSA problems solved" },
+    { value: "1800+", label: "LeetCode rating" },
+    { value: "Top 2K", label: "Weekly contest" },
   ],
 } as const;
 
-export type Project = {
-  name: string;
-  description: string;
-  stack: readonly string[];
-  repo?: string;
-  live?: string;
-  status: "active" | "wip" | "archived";
-};
-
-export const projects: readonly Project[] = [
+export const socials: readonly SocialLink[] = [
   {
-    name: "devboard",
-    description:
-      "a real-time analytics dashboard for side projects with charts, alerts, and weekly digests",
-    stack: ["Next.js", "TypeScript", "PostgreSQL"],
-    repo: "https://github.com/ANURAGYADAV008/devboard",
-    live: "https://devboard.example.com",
-    status: "active",
+    label: "GitHub",
+    href: "https://github.com/ANURAGYADAV008",
+    icon: "github",
   },
   {
-    name: "termblog",
-    description:
-      "a markdown-first blog engine that renders posts in a retro terminal UI",
-    stack: ["Node.js", "Markdown", "CLI"],
-    repo: "https://github.com/ANURAGYADAV008/termblog",
-    status: "active",
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/anurag-yadav-3bb3a1329",
+    icon: "linkedin",
   },
   {
-    name: "snipkeep",
-    description:
-      "a keyboard-first snippet manager with fuzzy search and fully offline storage",
-    stack: ["React", "TypeScript", "IndexedDB"],
-    repo: "https://github.com/ANURAGYADAV008/snipkeep",
-    status: "wip",
-  },
-];
-
-export const skills: readonly { group: string; items: readonly string[] }[] = [
-  {
-    group: "languages",
-    items: ["TypeScript", "JavaScript", "Python", "SQL"],
+    label: "LeetCode",
+    href: "https://leetcode.com/u/jayanurag123/",
+    icon: "leetcode",
   },
   {
-    group: "frontend",
-    items: ["React", "Next.js", "Tailwind CSS", "HTML & CSS"],
+    label: "X",
+    href: "https://x.com/Anurag95177267",
+    icon: "x",
   },
   {
-    group: "backend",
-    items: ["Node.js", "Express", "PostgreSQL", "REST APIs"],
-  },
-  {
-    group: "tools",
-    items: ["Git & GitHub", "Docker", "Linux", "Vercel"],
+    label: "Email",
+    href: "mailto:anuragyadav05556@gmail.com",
+    icon: "mail",
   },
 ];
