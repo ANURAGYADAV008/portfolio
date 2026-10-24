@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const LOOK_RADIUS = 300;
 const MAX_LOOK_X = 2.8;
 const MAX_LOOK_Y = 2.2;
+const SHAPES = ["circle", "kite", "rectangle"] as const;
 
 export function Bot({
   className = "size-44 sm:size-52",
@@ -14,6 +15,8 @@ export function Bot({
   const avatarRef = useRef<HTMLButtonElement>(null);
   const pokeRef = useRef<HTMLSpanElement>(null);
   const eyesRef = useRef<HTMLSpanElement>(null);
+  const [shapeIndex, setShapeIndex] = useState(0);
+  const shape = SHAPES[shapeIndex];
 
   useEffect(() => {
     const avatar = avatarRef.current;
@@ -77,6 +80,8 @@ export function Bot({
   }, []);
 
   const handlePoke = () => {
+    setShapeIndex((index) => (index + 1) % SHAPES.length);
+
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     pokeRef.current?.animate(
@@ -115,14 +120,18 @@ export function Bot({
         <button
           ref={avatarRef}
           type="button"
+          data-shape={shape}
           className="bot-avatar absolute inset-0 rounded-full border-0 bg-transparent p-0 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
           onClick={handlePoke}
-          aria-label="Poke the animated bot avatar"
+          aria-label={`Change the bot shape — currently ${shape}`}
+          title="Tap to change shape"
         >
           <span className="bot-idle absolute inset-0">
             <span ref={pokeRef} className="bot-poke absolute inset-0">
-              <span className="bot-blob absolute inset-[3%]">
-                <span className="bot-grain" aria-hidden="true" />
+              <span className="bot-blob absolute inset-0">
+                <span className="bot-shape" aria-hidden="true">
+                  <span className="bot-grain" />
+                </span>
                 <span ref={eyesRef} className="bot-eyes" aria-hidden="true">
                   <span className="bot-eye" />
                   <span className="bot-eye" />

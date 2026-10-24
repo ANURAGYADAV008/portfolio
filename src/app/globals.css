@@ -17,8 +17,6 @@
   --accent-ink: #214b3f;
 
   --bot-face: #2d6354;
-  --bot-face-hi: #4f8c77;
-  --bot-face-lo: #1b4034;
   --bot-ink: #0e211a;
 
   --gh-0: #ebedf0;
@@ -43,8 +41,6 @@
   --accent-ink: #b7e2d0;
 
   --bot-face: #3b7660;
-  --bot-face-hi: #64a58b;
-  --bot-face-lo: #234b3d;
   --bot-ink: #0a1b14;
 
   --gh-0: #1d211c;
@@ -136,41 +132,99 @@
 }
 
 .bot-blob {
+  filter: drop-shadow(0 15px 18px rgba(18, 48, 38, 0.22));
+}
+
+.bot-shape {
+  position: absolute;
+  inset: 3%;
+  z-index: 1;
   overflow: hidden;
-  border-radius: 47% 53% 51% 49% / 49% 48% 52% 51%;
-  background:
+  border-radius: 46% 54% 52% 48% / 50% 47% 53% 50%;
+  background-color: var(--bot-face);
+  background-image:
     radial-gradient(
       120% 120% at 32% 22%,
-      var(--bot-face-hi) 0%,
-      transparent 42%
+      rgba(255, 255, 255, 0.2) 0%,
+      transparent 45%
     ),
     radial-gradient(
       120% 120% at 68% 88%,
-      var(--bot-face-lo) 0%,
-      transparent 62%
-    ),
-    var(--bot-face);
+      rgba(8, 22, 17, 0.26) 0%,
+      transparent 64%
+    );
   box-shadow:
     inset 0 2px 3px rgba(255, 255, 255, 0.18),
-    inset 0 -12px 22px rgba(11, 31, 24, 0.22),
-    0 16px 28px -14px rgba(18, 48, 38, 0.6);
-  transition: filter 200ms ease;
+    inset 0 -12px 22px rgba(11, 31, 24, 0.22);
+  transform: rotate(0deg) scale(1);
+  transform-origin: 50% 50%;
+  transition:
+    transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-radius 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 420ms ease,
+    filter 200ms ease;
   animation: bot-morph 7.5s ease-in-out infinite;
-  will-change: border-radius;
+  will-change: transform, border-radius, background-color;
 }
 
 .bot-avatar {
+  --bot-face: #2d6354;
+  --bot-ink: #0e211a;
   cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
   transform: rotate(var(--bot-tilt, 0deg));
   transform-origin: 50% 72%;
   transition: transform 300ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.bot-avatar:hover .bot-blob {
+.bot-avatar[data-shape="circle"] {
+  --bot-face: #2d6354;
+  --bot-ink: #0e211a;
+}
+
+.bot-avatar[data-shape="kite"] {
+  --bot-face: #b46d33;
+  --bot-ink: #2a1608;
+}
+
+.bot-avatar[data-shape="rectangle"] {
+  --bot-face: #3e637b;
+  --bot-ink: #091b24;
+}
+
+.dark .bot-avatar[data-shape="circle"] {
+  --bot-face: #3b7660;
+  --bot-ink: #0a1b14;
+}
+
+.dark .bot-avatar[data-shape="kite"] {
+  --bot-face: #c57c3e;
+  --bot-ink: #251307;
+}
+
+.dark .bot-avatar[data-shape="rectangle"] {
+  --bot-face: #4c7590;
+  --bot-ink: #07161e;
+}
+
+.bot-avatar[data-shape="kite"] .bot-shape {
+  border-radius: 10%;
+  transform: rotate(45deg) scale(0.68);
+  animation: none;
+}
+
+.bot-avatar[data-shape="rectangle"] .bot-shape {
+  border-radius: 20%;
+  transform: rotate(0deg) scale(0.68, 0.95);
+  animation: none;
+}
+
+.bot-avatar:hover .bot-shape {
   filter: brightness(1.03) saturate(1.04);
 }
 
-.bot-blob::before {
+.bot-shape::before {
   position: absolute;
   inset: 0;
   z-index: 1;
@@ -209,7 +263,20 @@
     calc(-50% + var(--bot-look-x, 0px)),
     calc(-50% + var(--bot-look-y, 0px))
   );
-  transition: transform 240ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition:
+    transform 240ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    top 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    width 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.bot-avatar[data-shape="kite"] .bot-eyes {
+  top: 46%;
+  width: 38%;
+}
+
+.bot-avatar[data-shape="rectangle"] .bot-eyes {
+  top: 44%;
+  width: 32%;
 }
 
 .bot-eye {
@@ -219,6 +286,7 @@
   background: var(--bot-ink);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22);
   transform-origin: center;
+  transition: background-color 420ms ease;
   animation: bot-blink 6.6s ease-in-out infinite;
 }
 
@@ -247,11 +315,13 @@ html {
 
   .bot-float,
   .bot-idle,
-  .bot-blob,
+  .bot-shape,
   .bot-eye {
     animation: none;
   }
 
+  .bot-shape,
+  .bot-eye,
   .bot-eyes {
     transition: none;
   }
