@@ -25,9 +25,13 @@ export function SocialLinks({
               rel={external ? "noreferrer" : undefined}
               aria-label={link.label}
               title={link.label}
-              className="flex size-9 items-center justify-center rounded-full border border-line text-muted transition-colors hover:border-line-strong hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+              data-brand={link.icon}
+              className="social-link group/social flex size-10 items-center justify-center rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
             >
-              <SocialIcon name={link.icon} className="size-3.5" />
+              <SocialIcon
+                name={link.icon}
+                className="size-4 transition-transform duration-200 group-hover/social:scale-110"
+              />
               <span className="sr-only">{link.label}</span>
             </a>
           </li>

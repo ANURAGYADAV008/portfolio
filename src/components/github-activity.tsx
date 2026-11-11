@@ -82,6 +82,24 @@ export async function GitHubActivity() {
 
   return (
     <div>
+      <div className="mb-3 flex flex-wrap items-baseline justify-between gap-2">
+        <p className="text-[13px] text-muted">
+          <span className="font-medium text-ink">
+            {snapshot.total.toLocaleString("en-US")}
+          </span>{" "}
+          contributions in the last year
+        </p>
+        <a
+          href={site.githubUrl}
+          target="_blank"
+          rel="noreferrer"
+          className="group/link inline-flex items-center gap-1 text-[11px] font-medium text-muted transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+        >
+          @{site.githubUser}
+          <ArrowUpRight className="size-3 transition-transform duration-200 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5" />
+        </a>
+      </div>
+
       <div
         className="overflow-x-auto pb-1"
         role="img"

@@ -10,14 +10,18 @@ const links = [
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-40 border-b border-line bg-paper px-5">
+    <header className="sticky top-0 z-40 border-b border-line/80 bg-paper/80 px-5 backdrop-blur-xl">
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/45 to-transparent"
+      />
       <div className="mx-auto flex h-16 w-full max-w-[800px] items-center justify-between gap-2 sm:gap-4">
         <a
           href="#top"
           className="group flex items-center gap-2.5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
           aria-label={`${site.name} — back to top`}
         >
-          <span className="flex size-8 items-center justify-center rounded-full border border-line-strong font-display text-sm leading-none text-ink transition-colors group-hover:border-accent group-hover:text-accent">
+          <span className="flex size-8 items-center justify-center rounded-full border border-accent/30 bg-accent-soft font-display text-sm leading-none text-accent-ink transition-colors group-hover:border-accent group-hover:bg-accent group-hover:text-paper">
             {site.monogram}
           </span>
           <span className="hidden text-sm font-medium tracking-tight text-ink sm:block">
@@ -34,7 +38,7 @@ export function SiteHeader() {
               <a
                 key={link.href}
                 href={link.href}
-                className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted transition-colors hover:text-ink sm:text-[11px]"
+                className="nav-link font-mono text-[10px] uppercase tracking-[0.14em] text-muted transition-colors hover:text-ink sm:text-[11px]"
               >
                 {link.label}
               </a>

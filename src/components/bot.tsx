@@ -6,6 +6,9 @@ const LOOK_RADIUS = 300;
 const MAX_LOOK_X = 2.8;
 const MAX_LOOK_Y = 2.2;
 const SHAPES = ["circle", "kite", "rectangle"] as const;
+const IDLE_MS = 15_000;
+const HAPPY_MS = 1_200;
+const WAKE_THROTTLE_MS = 400;
 
 export function Bot({
   className = "size-44 sm:size-52",
@@ -15,8 +18,12 @@ export function Bot({
   const avatarRef = useRef<HTMLButtonElement>(null);
   const pokeRef = useRef<HTMLSpanElement>(null);
   const eyesRef = useRef<HTMLSpanElement>(null);
+  const happyTimer = useRef<number | null>(null);
   const [shapeIndex, setShapeIndex] = useState(0);
+  const [sleeping, setSleeping] = useState(false);
+  const [happy, setHappy] = useState(false);
   const shape = SHAPES[shapeIndex];
+  const mood = happy ? "happy" : sleeping ? "sleepy" : "idle";
 
   useEffect(() => {
     const avatar = avatarRef.current;
@@ -79,8 +86,52 @@ export function Bot({
     };
   }, []);
 
+  useEffect(() => {
+    let idleTimer: number | undefined;
+    let lastWake = 0;
+
+    const scheduleSleep = () => {
+      window.clearTimeout(idleTimer);
+      idleTimer = window.setTimeout(() => setSleeping(true), IDLE_MS);
+    };
+
+    const wake = () => {
+      const now = Date.now();
+      if (now - lastWake < WAKE_THROTTLE_MS) return;
+      lastWake = now;
+      setSleeping(false);
+      scheduleSleep();
+    };
+
+    scheduleSleep();
+
+    window.addEventListener("pointermove", wake, { passive: true });
+    window.addEventListener("pointerdown", wake, { passive: true });
+    window.addEventListener("keydown", wake);
+    window.addEventListener("scroll", wake, { passive: true });
+
+    return () => {
+      window.clearTimeout(idleTimer);
+      window.removeEventListener("pointermove", wake);
+      window.removeEventListener("pointerdown", wake);
+      window.removeEventListener("keydown", wake);
+      window.removeEventListener("scroll", wake);
+    };
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (happyTimer.current) window.clearTimeout(happyTimer.current);
+    };
+  }, []);
+
   const handlePoke = () => {
     setShapeIndex((index) => (index + 1) % SHAPES.length);
+    setSleeping(false);
+    setHappy(true);
+
+    if (happyTimer.current) window.clearTimeout(happyTimer.current);
+    happyTimer.current = window.setTimeout(() => setHappy(false), HAPPY_MS);
 
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
@@ -121,20 +172,44 @@ export function Bot({
           ref={avatarRef}
           type="button"
           data-shape={shape}
+          data-mood={mood}
           className="bot-avatar absolute inset-0 rounded-full border-0 bg-transparent p-0 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
           onClick={handlePoke}
-          aria-label={`Change the bot shape — currently ${shape}`}
-          title="Tap to change shape"
+          onPointerEnter={() => setSleeping(false)}
+          onFocus={() => setSleeping(false)}
+          aria-label={`Bot mascot is ${mood}. Activate to change shape — currently ${shape}.`}
+          title="Tap to wake the bot or change its shape"
         >
           <span className="bot-idle absolute inset-0">
             <span ref={pokeRef} className="bot-poke absolute inset-0">
               <span className="bot-blob absolute inset-0">
+                <span className="bot-antenna" aria-hidden="true">
+                  <span className="bot-antenna-tip" />
+                </span>
+
                 <span className="bot-shape" aria-hidden="true">
                   <span className="bot-grain" />
                 </span>
+
+                <span
+                  className="bot-cheeks"
+                  aria-hidden="true"
+                >
+                  <span className="bot-cheek" />
+                  <span className="bot-cheek" />
+                </span>
+
                 <span ref={eyesRef} className="bot-eyes" aria-hidden="true">
                   <span className="bot-eye" />
                   <span className="bot-eye" />
+                </span>
+
+                <span className="bot-mouth" aria-hidden="true" />
+
+                <span className="bot-zzz" aria-hidden="true">
+                  <span>z</span>
+                  <span>z</span>
+                  <span>z</span>
                 </span>
               </span>
             </span>

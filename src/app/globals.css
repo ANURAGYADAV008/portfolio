@@ -286,12 +286,230 @@
   background: var(--bot-ink);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22);
   transform-origin: center;
-  transition: background-color 420ms ease;
+  transition:
+    background-color 420ms ease,
+    transform 260ms ease;
   animation: bot-blink 6.6s ease-in-out infinite;
 }
 
 .bot-eye:last-child {
   animation-delay: 35ms;
+}
+
+.bot-antenna {
+  position: absolute;
+  top: -4%;
+  left: 50%;
+  z-index: 2;
+  width: 2px;
+  height: 18%;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--bot-ink) 70%, transparent);
+  transform-origin: bottom center;
+  animation: bot-antenna-sway 5.2s ease-in-out infinite;
+  transition: opacity 300ms ease;
+}
+
+.bot-antenna-tip {
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--accent);
+  box-shadow:
+    0 0 0 3px color-mix(in oklab, var(--accent) 16%, transparent),
+    0 0 12px 3px color-mix(in oklab, var(--accent) 42%, transparent);
+  transform: translateX(-50%);
+  animation: bot-antenna-glow 3.8s ease-in-out infinite;
+  transition: opacity 300ms ease, box-shadow 300ms ease;
+}
+
+.bot-avatar[data-shape="kite"] .bot-antenna,
+.bot-avatar[data-shape="rectangle"] .bot-antenna {
+  opacity: 0;
+}
+
+.bot-avatar[data-mood="happy"] .bot-antenna-tip {
+  box-shadow:
+    0 0 0 5px color-mix(in oklab, var(--accent) 22%, transparent),
+    0 0 20px 8px color-mix(in oklab, var(--accent) 55%, transparent);
+}
+
+.bot-avatar[data-mood="sleepy"] .bot-antenna {
+  animation: none;
+  transform: translateX(-50%) rotate(-6deg);
+}
+
+.bot-avatar[data-mood="sleepy"] .bot-antenna-tip {
+  animation: none;
+  opacity: 0.4;
+  box-shadow: none;
+}
+
+.bot-cheeks {
+  position: absolute;
+  top: 57%;
+  left: 50%;
+  z-index: 2;
+  display: flex;
+  width: 54%;
+  justify-content: space-between;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.bot-cheek {
+  width: 13%;
+  aspect-ratio: 1;
+  border-radius: 999px;
+  background: color-mix(in oklab, #ff9a6b 50%, transparent);
+  opacity: 0;
+  transition: opacity 260ms ease;
+}
+
+.bot-avatar:hover .bot-cheek,
+.bot-avatar[data-mood="happy"] .bot-cheek {
+  opacity: 0.5;
+}
+
+.bot-mouth {
+  position: absolute;
+  top: 63%;
+  left: 50%;
+  z-index: 3;
+  width: 15%;
+  height: 7%;
+  border-bottom: 2px solid var(--bot-ink);
+  border-radius: 0 0 50% 50%;
+  transform: translate(-50%, -50%);
+  transition:
+    width 260ms cubic-bezier(0.22, 1, 0.36, 1),
+    height 260ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 260ms ease,
+    border-radius 260ms ease;
+}
+
+.bot-avatar[data-shape="kite"] .bot-cheeks {
+  top: 58%;
+  width: 50%;
+}
+
+.bot-avatar[data-shape="rectangle"] .bot-cheeks {
+  top: 57%;
+  width: 44%;
+}
+
+.bot-avatar[data-shape="kite"] .bot-mouth {
+  top: 61%;
+  width: 13%;
+}
+
+.bot-avatar[data-shape="rectangle"] .bot-mouth {
+  top: 60%;
+  width: 11%;
+}
+
+.bot-avatar:hover .bot-mouth {
+  width: 17%;
+  height: 8.5%;
+}
+
+.bot-avatar[data-mood="happy"] .bot-mouth {
+  width: 20%;
+  height: 11%;
+  border-bottom-width: 0;
+  border-radius: 0 0 999px 999px;
+  background-color: var(--bot-ink);
+}
+
+.bot-avatar[data-mood="sleepy"] .bot-eye {
+  animation: none;
+  transform: scaleY(0.12);
+}
+
+.bot-avatar[data-mood="sleepy"] .bot-mouth {
+  width: 7%;
+  height: 3%;
+  border-bottom-width: 2px;
+  border-radius: 50%;
+  background-color: transparent;
+}
+
+.bot-zzz {
+  position: absolute;
+  top: 0;
+  right: 2%;
+  z-index: 4;
+  display: flex;
+  align-items: flex-end;
+  gap: 1px;
+  font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
+  line-height: 1;
+  color: var(--accent);
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 300ms ease, transform 300ms ease;
+  pointer-events: none;
+}
+
+.bot-avatar[data-mood="sleepy"] .bot-zzz {
+  opacity: 0.9;
+  transform: translateY(0);
+}
+
+.bot-zzz span {
+  font-size: 9px;
+  animation: bot-zzz-float 3s ease-in-out infinite;
+}
+
+.bot-zzz span:nth-child(2) {
+  font-size: 11px;
+  animation-delay: 300ms;
+}
+
+.bot-zzz span:nth-child(3) {
+  font-size: 13px;
+  animation-delay: 600ms;
+}
+
+@keyframes bot-antenna-sway {
+  0%,
+  100% {
+    transform: translateX(-50%) rotate(-3.5deg);
+  }
+  50% {
+    transform: translateX(-50%) rotate(3.5deg);
+  }
+}
+
+@keyframes bot-antenna-glow {
+  0%,
+  100% {
+    opacity: 0.7;
+    box-shadow:
+      0 0 0 3px color-mix(in oklab, var(--accent) 14%, transparent),
+      0 0 9px 2px color-mix(in oklab, var(--accent) 34%, transparent);
+  }
+  50% {
+    opacity: 1;
+    box-shadow:
+      0 0 0 4px color-mix(in oklab, var(--accent) 20%, transparent),
+      0 0 16px 5px color-mix(in oklab, var(--accent) 52%, transparent);
+  }
+}
+
+@keyframes bot-zzz-float {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-4px);
+  }
 }
 
 .gh-cell {
@@ -302,6 +520,147 @@
 
 .gh-cell:hover {
   outline-color: var(--ink);
+}
+
+/* Official brand colours for the social links. */
+.social-link {
+  --brand: var(--accent);
+  --brand-ink: #ffffff;
+  color: var(--brand);
+  border: 1px solid color-mix(in oklab, var(--brand) 25%, var(--line));
+  background-color: color-mix(in oklab, var(--brand) 8%, var(--surface));
+  transition:
+    color 200ms ease,
+    background-color 200ms ease,
+    border-color 200ms ease,
+    transform 200ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 200ms ease;
+}
+
+.social-link:hover,
+.social-link:focus-visible {
+  color: var(--brand-ink);
+  border-color: var(--brand);
+  background-color: var(--brand);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px -12px
+    color-mix(in oklab, var(--brand) 70%, transparent);
+}
+
+.social-link:active {
+  transform: translateY(0);
+}
+
+.social-link[data-brand="github"] {
+  --brand: #181717;
+  --brand-ink: #ffffff;
+}
+
+.social-link[data-brand="linkedin"] {
+  --brand: #0a66c2;
+  --brand-ink: #ffffff;
+}
+
+.social-link[data-brand="leetcode"] {
+  --brand: #ffa116;
+  --brand-ink: #211400;
+}
+
+.social-link[data-brand="x"] {
+  --brand: #000000;
+  --brand-ink: #ffffff;
+}
+
+.social-link[data-brand="mail"] {
+  --brand: var(--accent);
+  --brand-ink: #ffffff;
+}
+
+.dark .social-link[data-brand="github"],
+.dark .social-link[data-brand="x"] {
+  --brand: #f2f2f2;
+  --brand-ink: #111111;
+}
+
+.dark .social-link[data-brand="linkedin"] {
+  --brand: #4c9be8;
+  --brand-ink: #07192b;
+}
+
+.dark .social-link[data-brand="leetcode"] {
+  --brand: #ffb545;
+  --brand-ink: #211400;
+}
+
+.dark .social-link[data-brand="mail"] {
+  --brand: var(--accent);
+  --brand-ink: #0d1f18;
+}
+
+/* Header nav underline. */
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  position: absolute;
+  right: 0;
+  bottom: -5px;
+  left: 0;
+  height: 1px;
+  background-color: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+  content: "";
+}
+
+.nav-link:hover::after,
+.nav-link:focus-visible::after {
+  transform: scaleX(1);
+}
+
+@keyframes availability-pulse {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in oklab, var(--accent) 45%, transparent);
+  }
+  70% {
+    box-shadow: 0 0 0 6px color-mix(in oklab, var(--accent) 0%, transparent);
+  }
+  100% {
+    box-shadow: 0 0 0 0 color-mix(in oklab, var(--accent) 0%, transparent);
+  }
+}
+
+.availability-dot {
+  animation: availability-pulse 2.6s ease-out infinite;
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.rise-in {
+  animation: rise-in 620ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.rise-in-delay-1 {
+  animation-delay: 80ms;
+}
+
+.rise-in-delay-2 {
+  animation-delay: 160ms;
+}
+
+.rise-in-delay-3 {
+  animation-delay: 240ms;
 }
 
 html {
@@ -316,13 +675,22 @@ html {
   .bot-float,
   .bot-idle,
   .bot-shape,
-  .bot-eye {
+  .bot-eye,
+  .bot-antenna,
+  .bot-antenna-tip,
+  .bot-mouth,
+  .bot-zzz span {
     animation: none;
   }
 
   .bot-shape,
   .bot-eye,
-  .bot-eyes {
+  .bot-eyes,
+  .bot-antenna,
+  .bot-antenna-tip,
+  .bot-cheek,
+  .bot-mouth,
+  .bot-zzz {
     transition: none;
   }
 
@@ -335,11 +703,53 @@ html {
   .gh-cell {
     transition: none;
   }
+
+  .availability-dot,
+  .rise-in {
+    animation: none;
+  }
+
+  .social-link,
+  .social-link:hover,
+  .social-link:focus-visible {
+    transform: none;
+    transition: none;
+  }
+
+  .nav-link::after {
+    transition: none;
+  }
 }
 
 @layer base {
   body {
     @apply bg-paper font-sans text-ink antialiased;
+    background-image:
+      radial-gradient(
+        58rem 30rem at 84% -14rem,
+        color-mix(in oklab, var(--accent) 11%, transparent),
+        transparent 70%
+      ),
+      radial-gradient(
+        42rem 24rem at 4% 2rem,
+        color-mix(in oklab, var(--accent) 6%, transparent),
+        transparent 72%
+      );
+    background-repeat: no-repeat;
+  }
+
+  .dark body {
+    background-image:
+      radial-gradient(
+        58rem 30rem at 84% -14rem,
+        color-mix(in oklab, var(--accent) 13%, transparent),
+        transparent 70%
+      ),
+      radial-gradient(
+        42rem 24rem at 4% 2rem,
+        color-mix(in oklab, var(--accent) 7%, transparent),
+        transparent 72%
+      );
   }
 
   section[id] {

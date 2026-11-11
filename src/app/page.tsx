@@ -26,10 +26,14 @@ export default function Home() {
       <main id="top">
         <section id="about" className="px-5 pb-6 pt-10 sm:pb-8 sm:pt-14">
           <div className="mx-auto w-full max-w-[800px]">
-            <div className="flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:gap-7">
-              <Bot className="size-28 sm:size-32" />
+            <div className="relative flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:gap-7">
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute -left-8 -top-10 size-44 rounded-full bg-accent/15 blur-3xl"
+              />
+              <Bot className="rise-in relative size-28 sm:size-32" />
 
-              <div>
+              <div className="rise-in rise-in-delay-1">
                 <h1 className="font-display text-4xl leading-none tracking-[-0.01em] text-ink sm:text-5xl">
                   {site.name}
                 </h1>
@@ -41,7 +45,7 @@ export default function Home() {
               </div>
             </div>
 
-            <p className="mt-8 max-w-[700px] text-balance font-display text-[2rem] leading-[1.08] tracking-[-0.01em] text-ink sm:mt-9 sm:text-[2.5rem]">
+            <p className="rise-in rise-in-delay-2 mt-8 max-w-[700px] text-balance font-display text-[2rem] leading-[1.08] tracking-[-0.01em] text-ink sm:mt-9 sm:text-[2.5rem]">
               {site.tagline}
             </p>
 
@@ -109,9 +113,9 @@ export default function Home() {
                 </a>
               </div>
 
-              <span className="ml-auto inline-flex items-center gap-2 rounded-full border border-line bg-surface px-3 py-1.5 font-mono text-[9px] uppercase tracking-[0.12em] text-muted">
+              <span className="ml-auto inline-flex items-center gap-2 rounded-full border border-accent/25 bg-accent-soft px-3 py-1.5 font-mono text-[9px] uppercase tracking-[0.12em] text-accent-ink">
                 <span
-                  className="size-1.5 rounded-full bg-accent"
+                  className="availability-dot size-1.5 rounded-full bg-accent"
                   aria-hidden="true"
                 />
                 {site.availability}
@@ -198,7 +202,7 @@ export default function Home() {
             <span className="h-px w-4 bg-line-strong" aria-hidden="true" />
           </p>
 
-          <h2 className="mt-3 font-display text-2xl leading-tight text-ink sm:text-3xl">
+          <h2 className="mt-4 font-display text-3xl leading-tight text-ink sm:text-4xl">
             Say hello.
           </h2>
 
