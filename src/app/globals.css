@@ -52,7 +52,6 @@
 
 @theme inline {
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-instrument-serif), Georgia, "Times New Roman", serif;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, "SFMono-Regular",
     Menlo, Consolas, monospace;
 
@@ -523,78 +522,55 @@
 }
 
 /* Official brand colours for the social links. */
-.social-link {
+.social-inline {
   --brand: var(--accent);
-  --brand-ink: #ffffff;
+}
+
+.social-inline svg {
   color: var(--brand);
-  border: 1px solid color-mix(in oklab, var(--brand) 25%, var(--line));
-  background-color: color-mix(in oklab, var(--brand) 8%, var(--surface));
-  transition:
-    color 200ms ease,
-    background-color 200ms ease,
-    border-color 200ms ease,
-    transform 200ms cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 200ms ease;
+  transition: transform 180ms ease;
 }
 
-.social-link:hover,
-.social-link:focus-visible {
-  color: var(--brand-ink);
-  border-color: var(--brand);
-  background-color: var(--brand);
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px -12px
-    color-mix(in oklab, var(--brand) 70%, transparent);
+.social-inline:hover svg,
+.social-inline:focus-visible svg {
+  transform: translateY(-1px) scale(1.08);
 }
 
-.social-link:active {
-  transform: translateY(0);
-}
-
-.social-link[data-brand="github"] {
+.social-inline[data-brand="github"] {
   --brand: #181717;
-  --brand-ink: #ffffff;
 }
 
-.social-link[data-brand="linkedin"] {
+.social-inline[data-brand="linkedin"] {
   --brand: #0a66c2;
-  --brand-ink: #ffffff;
 }
 
-.social-link[data-brand="leetcode"] {
+.social-inline[data-brand="leetcode"] {
   --brand: #ffa116;
-  --brand-ink: #211400;
 }
 
-.social-link[data-brand="x"] {
+.social-inline[data-brand="x"] {
   --brand: #000000;
-  --brand-ink: #ffffff;
 }
 
-.social-link[data-brand="mail"] {
+.social-inline[data-brand="mail"] {
   --brand: var(--accent);
-  --brand-ink: #ffffff;
 }
 
-.dark .social-link[data-brand="github"],
-.dark .social-link[data-brand="x"] {
+.dark .social-inline[data-brand="github"],
+.dark .social-inline[data-brand="x"] {
   --brand: #f2f2f2;
-  --brand-ink: #111111;
 }
 
-.dark .social-link[data-brand="linkedin"] {
+.dark .social-inline[data-brand="linkedin"] {
   --brand: #4c9be8;
-  --brand-ink: #07192b;
 }
 
-.dark .social-link[data-brand="leetcode"] {
+.dark .social-inline[data-brand="leetcode"] {
   --brand: #ffb545;
-  --brand-ink: #211400;
 }
 
-.dark .social-link[data-brand="mail"] {
+.dark .social-inline[data-brand="mail"] {
   --brand: var(--accent);
-  --brand-ink: #0d1f18;
 }
 
 /* Header nav underline. */
@@ -709,9 +685,7 @@ html {
     animation: none;
   }
 
-  .social-link,
-  .social-link:hover,
-  .social-link:focus-visible {
+  .social-inline svg {
     transform: none;
     transition: none;
   }
@@ -724,36 +698,10 @@ html {
 @layer base {
   body {
     @apply bg-paper font-sans text-ink antialiased;
-    background-image:
-      radial-gradient(
-        58rem 30rem at 84% -14rem,
-        color-mix(in oklab, var(--accent) 11%, transparent),
-        transparent 70%
-      ),
-      radial-gradient(
-        42rem 24rem at 4% 2rem,
-        color-mix(in oklab, var(--accent) 6%, transparent),
-        transparent 72%
-      );
-    background-repeat: no-repeat;
-  }
-
-  .dark body {
-    background-image:
-      radial-gradient(
-        58rem 30rem at 84% -14rem,
-        color-mix(in oklab, var(--accent) 13%, transparent),
-        transparent 70%
-      ),
-      radial-gradient(
-        42rem 24rem at 4% 2rem,
-        color-mix(in oklab, var(--accent) 7%, transparent),
-        transparent 72%
-      );
   }
 
   section[id] {
-    scroll-margin-top: 5rem;
+    scroll-margin-top: 4rem;
   }
 
   ::selection {

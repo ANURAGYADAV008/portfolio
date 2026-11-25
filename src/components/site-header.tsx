@@ -2,49 +2,35 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { site } from "@/data/site";
 
 const links = [
-  { label: "About", href: "#about" },
-  { label: "Work", href: "#work" },
-  { label: "Skills", href: "#skills" },
-  { label: "GitHub", href: "#github" },
+  { label: "Stack", href: "#skills" },
+  { label: "Projects", href: "#work" },
+  { label: "Contact", href: "#contact" },
 ];
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-40 border-b border-line/80 bg-paper/80 px-5 backdrop-blur-xl">
-      <span
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/45 to-transparent"
-      />
-      <div className="mx-auto flex h-16 w-full max-w-[800px] items-center justify-between gap-2 sm:gap-4">
+    <header className="sticky top-0 z-40 border-b border-line/70 bg-paper/85 backdrop-blur-xl">
+      <div className="mx-auto flex h-12 w-full max-w-[680px] items-center justify-between px-5 sm:px-6">
         <a
           href="#top"
-          className="group flex items-center gap-2.5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+          className="font-mono text-[11px] tracking-[0.04em] text-muted transition-colors hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
           aria-label={`${site.name} — back to top`}
         >
-          <span className="flex size-8 items-center justify-center rounded-full border border-accent/30 bg-accent-soft font-display text-sm leading-none text-accent-ink transition-colors group-hover:border-accent group-hover:bg-accent group-hover:text-paper">
-            {site.monogram}
-          </span>
-          <span className="hidden text-sm font-medium tracking-tight text-ink sm:block">
-            {site.name}
-          </span>
+          <span className="text-accent">{"//"}</span> {site.monogram}
         </a>
 
-        <div className="flex items-center gap-2 sm:gap-6">
-          <nav
-            aria-label="Sections"
-            className="flex items-center gap-2 sm:gap-5"
-          >
+        <div className="flex items-center gap-4">
+          <nav aria-label="Sections" className="hidden items-center gap-4 sm:flex">
             {links.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="nav-link font-mono text-[10px] uppercase tracking-[0.14em] text-muted transition-colors hover:text-ink sm:text-[11px]"
+                className="text-[10px] tracking-wide text-muted transition-colors hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
               >
                 {link.label}
               </a>
             ))}
           </nav>
-          <span className="hidden h-4 w-px bg-line sm:block" aria-hidden="true" />
           <ThemeToggle />
         </div>
       </div>

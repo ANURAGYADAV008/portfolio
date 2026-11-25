@@ -10,7 +10,7 @@ export function SocialLinks({
 }) {
   return (
     <ul
-      className={`flex flex-wrap items-center gap-2 ${
+      className={`flex flex-wrap items-center gap-x-4 gap-y-2 text-[11px] ${
         align === "start" ? "justify-start" : "justify-center"
       } ${className}`}
     >
@@ -23,16 +23,11 @@ export function SocialLinks({
               href={link.href}
               target={external ? "_blank" : undefined}
               rel={external ? "noreferrer" : undefined}
-              aria-label={link.label}
-              title={link.label}
               data-brand={link.icon}
-              className="social-link group/social flex size-10 items-center justify-center rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+              className="social-inline inline-flex items-center gap-1.5 text-muted transition-colors hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
             >
-              <SocialIcon
-                name={link.icon}
-                className="size-4 transition-transform duration-200 group-hover/social:scale-110"
-              />
-              <span className="sr-only">{link.label}</span>
+              <SocialIcon name={link.icon} className="size-3.5" />
+              <span>{link.label}</span>
             </a>
           </li>
         );

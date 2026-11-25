@@ -83,7 +83,7 @@ export async function GitHubActivity() {
   return (
     <div>
       <div className="mb-3 flex flex-wrap items-baseline justify-between gap-2">
-        <p className="text-[13px] text-muted">
+        <p className="text-[11px] text-muted">
           <span className="font-medium text-ink">
             {snapshot.total.toLocaleString("en-US")}
           </span>{" "}
@@ -93,7 +93,7 @@ export async function GitHubActivity() {
           href={site.githubUrl}
           target="_blank"
           rel="noreferrer"
-          className="group/link inline-flex items-center gap-1 text-[11px] font-medium text-muted transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+          className="group/link inline-flex items-center gap-1 text-[10px] font-medium text-muted transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
         >
           @{site.githubUser}
           <ArrowUpRight className="size-3 transition-transform duration-200 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5" />
@@ -105,7 +105,7 @@ export async function GitHubActivity() {
         role="img"
         aria-label={`${snapshot.total} GitHub contributions in the last year`}
       >
-        <div className="w-full min-w-[677px]">
+        <div className="w-full min-w-[560px]">
           <div className="relative ml-11 h-4">
             {labels.map(({ index, label }) => (
               <span
@@ -164,12 +164,12 @@ export async function GitHubActivity() {
         </div>
       </div>
 
-      <p className="mt-2 font-mono text-[9px] uppercase tracking-[0.12em] text-muted min-[800px]:hidden">
+      <p className="mt-2 font-mono text-[8px] uppercase tracking-[0.12em] text-muted sm:hidden">
         Swipe to see the full year →
       </p>
 
       <div className="mt-3 flex items-center justify-end gap-1.5">
-        <span className="mr-1 font-mono text-[9px] uppercase tracking-[0.12em] text-muted">
+        <span className="mr-1 font-mono text-[8px] uppercase tracking-[0.12em] text-muted">
           Less
         </span>
         {[0, 1, 2, 3, 4].map((level) => (
@@ -179,7 +179,7 @@ export async function GitHubActivity() {
             style={{ backgroundColor: `var(--gh-${level})` }}
           />
         ))}
-        <span className="ml-1 font-mono text-[9px] uppercase tracking-[0.12em] text-muted">
+        <span className="ml-1 font-mono text-[8px] uppercase tracking-[0.12em] text-muted">
           More
         </span>
       </div>
@@ -208,7 +208,7 @@ function GitHubUnavailable() {
 
 export function GitHubSkeleton() {
   return (
-    <div className="border-y border-line py-5">
+    <div className="py-2">
       <div className="h-24 w-full animate-pulse rounded bg-line/40" />
     </div>
   );

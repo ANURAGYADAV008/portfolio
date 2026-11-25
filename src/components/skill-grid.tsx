@@ -1,36 +1,27 @@
 import { SkillIcon } from "@/components/icons";
 import { skillGroups } from "@/data/skills";
 
+const seen = new Set<string>();
+
+const skills = skillGroups
+  .flatMap((group) => group.skills)
+  .filter((skill) => {
+    if (seen.has(skill.name)) return false;
+    seen.add(skill.name);
+    return true;
+  });
+
 export function SkillGrid() {
   return (
-    <div className="mt-5 divide-y divide-line border-y border-line">
-      {skillGroups.map((group) => (
-        <section
-          key={group.label}
-          className="grid gap-2 py-3 sm:grid-cols-[7.5rem_1fr] sm:gap-6 sm:py-4"
-        >
-          <div className="flex items-baseline justify-between gap-3 sm:block">
-            <h3 className="text-[13px] font-medium leading-5 text-ink">
-              {group.label}
-            </h3>
-            <p className="font-mono text-[9px] uppercase tracking-[0.12em] text-muted sm:mt-0.5">
-              {group.caption}
-            </p>
-          </div>
-
-          <ul className="flex flex-wrap items-center gap-x-3.5 gap-y-2">
-            {group.skills.map((skill) => (
-              <li
-                key={skill.name}
-                className="group/skill flex items-center gap-1.5 text-xs text-muted"
-              >
-                <SkillIcon name={skill.icon} />
-                <span className="text-ink">{skill.name}</span>
-              </li>
-            ))}
-          </ul>
-        </section>
+    <ul className="flex flex-wrap gap-1.5">
+      {skills.map((skill) => (
+        <li key={skill.name}>
+          <span className="inline-flex items-center gap-1.5 rounded-md border border-line bg-surface px-1.5 py-1 text-[10px] leading-none text-muted transition-colors hover:border-accent/35 hover:text-ink">
+            <SkillIcon name={skill.icon} />
+            <span>{skill.name}</span>
+          </span>
+        </li>
       ))}
-    </div>
+    </ul>
   );
 }

@@ -179,7 +179,7 @@ export function SkillIcon({
       height={16}
       unoptimized
       className={[
-        "size-4 shrink-0 object-contain transition-transform duration-150 group-hover/skill:scale-110",
+        "size-3.5 shrink-0 object-contain",
         DARK_INVERTED_SKILL_ICONS.has(name) ? "dark:invert" : "",
         className,
       ]
