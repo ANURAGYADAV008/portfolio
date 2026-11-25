@@ -1,5 +1,4 @@
 import { Suspense } from "react";
-import { Bot } from "@/components/bot";
 import {
   GitHubActivity,
   GitHubSkeleton,
@@ -20,24 +19,18 @@ export default function Home() {
 
       <main id="top" className="mx-auto w-full max-w-[680px] px-5 sm:px-6">
         <section id="about" className="pb-1 pt-8 sm:pt-10">
-          <div className="flex items-start gap-3">
-            <Bot className="size-14" />
-
-            <div className="min-w-0 pt-0.5">
-              <h1 className="text-[14px] font-semibold leading-5 tracking-[-0.01em] text-ink sm:text-[15px]">
-                Hey, I&apos;m{" "}
-                <span className="rounded-[3px] bg-accent-soft px-1 py-0.5 text-accent-ink">
-                  {site.name}
-                </span>
-                !
-              </h1>
-              <p className="mt-1.5 text-[12px] leading-5 text-muted">
-                {site.role} based in {site.location}.
-                <br />
-                I build backend &amp; AI systems — RAG pipelines, agents, APIs.
-              </p>
-            </div>
-          </div>
+          <h1 className="text-[14px] font-semibold leading-5 tracking-[-0.01em] text-ink sm:text-[15px]">
+            Hey, I&apos;m{" "}
+            <span className="rounded-[3px] bg-accent-soft py-0.5 pl-1 pr-0.5 text-accent-ink">
+              {site.name}
+            </span>
+            !
+          </h1>
+          <p className="mt-1.5 text-[12px] leading-5 text-muted">
+            {site.role} based in {site.location}.
+            <br />
+            I build backend &amp; AI systems — RAG pipelines, agents, APIs.
+          </p>
 
           <div className="mt-4 flex flex-wrap items-center gap-2">
             <a
