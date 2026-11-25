@@ -47,7 +47,7 @@ export function ProjectList() {
               {project.blurb}
             </p>
 
-            <p className="mt-2 text-[9px] leading-4 text-muted/80">
+            <p className="mt-2 text-[9px] leading-4 text-muted">
               {project.stack.slice(0, 4).join(" · ")}
             </p>
 

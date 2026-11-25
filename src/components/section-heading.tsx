@@ -7,7 +7,7 @@ export function SectionHeading({
 }) {
   return (
     <div>
-      <h2 className="font-mono text-[9px] font-medium uppercase tracking-[0.2em] text-muted">
+      <h2 className="font-mono text-[9px] font-semibold uppercase tracking-[0.2em] text-ink">
         {label}
       </h2>
       {description ? (

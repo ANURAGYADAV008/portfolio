@@ -87,7 +87,7 @@ export default function Home() {
           <div className="mt-3">
             <SkillGrid />
           </div>
-          <p className="mt-2 text-[9px] leading-4 text-muted/80">
+          <p className="mt-2 text-[9px] leading-4 text-muted">
             <span className="text-ink">Also:</span>{" "}
             {alsoFamiliar.join(" · ")}
           </p>
