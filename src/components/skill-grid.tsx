@@ -16,7 +16,7 @@ export function SkillGrid() {
     <ul className="flex flex-wrap gap-1.5">
       {skills.map((skill) => (
         <li key={skill.name}>
-          <span className="inline-flex items-center gap-1.5 rounded-md border border-line bg-surface px-1.5 py-1 text-[10px] leading-none text-muted transition-colors hover:border-accent/35 hover:text-ink">
+          <span className="inline-flex items-center gap-1.5 rounded-md border border-line bg-surface px-2 py-1.5 text-[12px] leading-none text-muted transition-colors hover:border-accent/35 hover:text-ink">
             <SkillIcon name={skill.icon} />
             <span>{skill.name}</span>
           </span>

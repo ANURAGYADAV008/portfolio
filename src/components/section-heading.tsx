@@ -7,11 +7,13 @@ export function SectionHeading({
 }) {
   return (
     <div>
-      <h2 className="font-mono text-[9px] font-semibold uppercase tracking-[0.2em] text-ink">
+      <h2 className="text-[13px] font-medium uppercase tracking-wider text-ink">
         {label}
       </h2>
       {description ? (
-        <p className="mt-2 text-[12px] leading-5 text-muted">{description}</p>
+        <p className="mt-2 text-[15px] leading-relaxed text-muted">
+          {description}
+        </p>
       ) : null}
     </div>
   );

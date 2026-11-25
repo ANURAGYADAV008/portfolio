@@ -10,7 +10,7 @@ export function SocialLinks({
 }) {
   return (
     <ul
-      className={`flex flex-wrap items-center gap-x-4 gap-y-2 text-[11px] ${
+      className={`flex flex-wrap items-center gap-x-4 gap-y-2 text-[13px] ${
         align === "start" ? "justify-start" : "justify-center"
       } ${className}`}
     >
@@ -26,7 +26,7 @@ export function SocialLinks({
               data-brand={link.icon}
               className="social-inline inline-flex items-center gap-1.5 text-muted transition-colors hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
             >
-              <SocialIcon name={link.icon} className="size-3.5" />
+              <SocialIcon name={link.icon} className="size-4" />
               <span>{link.label}</span>
             </a>
           </li>

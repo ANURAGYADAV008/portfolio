@@ -83,7 +83,7 @@ export async function GitHubActivity() {
   return (
     <div>
       <div className="mb-3 flex flex-wrap items-baseline justify-between gap-2">
-        <p className="text-[11px] text-muted">
+        <p className="text-[13px] text-muted">
           <span className="font-medium text-ink">
             {snapshot.total.toLocaleString("en-US")}
           </span>{" "}
@@ -93,7 +93,7 @@ export async function GitHubActivity() {
           href={site.githubUrl}
           target="_blank"
           rel="noreferrer"
-          className="group/link inline-flex items-center gap-1 text-[10px] font-medium text-muted transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+          className="group/link inline-flex items-center gap-1 text-[12px] font-medium text-muted transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
         >
           @{site.githubUser}
           <ArrowUpRight className="size-3 transition-transform duration-200 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5" />
@@ -110,7 +110,7 @@ export async function GitHubActivity() {
             {labels.map(({ index, label }) => (
               <span
                 key={`${label}-${index}`}
-                className="absolute top-0 font-mono text-[9px] leading-none text-muted"
+                className="absolute top-0 font-mono text-[10px] leading-none text-muted"
                 style={{ left: `${(index / weeks.length) * 100}%` }}
               >
                 {label}
@@ -119,7 +119,7 @@ export async function GitHubActivity() {
           </div>
 
           <div className="flex gap-3">
-            <div className="grid w-8 shrink-0 grid-rows-7 gap-[3px] text-[9px] leading-[9px] text-muted">
+            <div className="grid w-8 shrink-0 grid-rows-7 gap-[3px] text-[10px] leading-[10px] text-muted">
               <span />
               <span>Mon</span>
               <span />
@@ -164,12 +164,12 @@ export async function GitHubActivity() {
         </div>
       </div>
 
-      <p className="mt-2 font-mono text-[8px] uppercase tracking-[0.12em] text-muted sm:hidden">
+      <p className="mt-2 font-mono text-[9px] uppercase tracking-[0.12em] text-muted sm:hidden">
         Swipe to see the full year →
       </p>
 
       <div className="mt-3 flex items-center justify-end gap-1.5">
-        <span className="mr-1 font-mono text-[8px] uppercase tracking-[0.12em] text-muted">
+        <span className="mr-1 font-mono text-[9px] uppercase tracking-[0.12em] text-muted">
           Less
         </span>
         {[0, 1, 2, 3, 4].map((level) => (
@@ -179,7 +179,7 @@ export async function GitHubActivity() {
             style={{ backgroundColor: `var(--gh-${level})` }}
           />
         ))}
-        <span className="ml-1 font-mono text-[8px] uppercase tracking-[0.12em] text-muted">
+        <span className="ml-1 font-mono text-[9px] uppercase tracking-[0.12em] text-muted">
           More
         </span>
       </div>
@@ -197,7 +197,7 @@ function GitHubUnavailable() {
         href={site.githubUrl}
         target="_blank"
         rel="noreferrer"
-        className="mt-2 inline-flex items-center gap-1 border-b border-line-strong/70 pb-0.5 text-xs font-medium text-ink transition-colors hover:border-accent hover:text-accent"
+        className="mt-2 inline-flex items-center gap-1 border-b border-line-strong/70 pb-0.5 text-[13px] font-medium text-ink transition-colors hover:border-accent hover:text-accent"
       >
         View GitHub profile
         <ArrowUpRight className="size-3" />
