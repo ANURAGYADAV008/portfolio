@@ -36,7 +36,7 @@ export default function Home() {
 
           <h1 className="text-[20px] font-semibold leading-tight tracking-[-0.01em] text-ink sm:text-[24px]">
             Hey, I&apos;m{" "}
-            <span className="rounded-[3px] bg-accent-soft py-0.5 pl-1 pr-0.5 text-accent-ink">
+            <span className="rounded-[3px] bg-orange-100 py-0.5 pl-1 pr-0.5 text-orange-600 dark:bg-orange-400/15 dark:text-orange-400">
               {site.name}
             </span>
             !
