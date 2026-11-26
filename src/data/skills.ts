@@ -1,6 +1,6 @@
 import type { BrandIconSlug } from "@/data/brand-icons";
 
-export type SkillIconName = BrandIconSlug | "server";
+export type SkillIconName = BrandIconSlug | "server" | "voice";
 
 export type Skill = {
   name: string;
@@ -41,7 +41,21 @@ export const skillGroups: readonly SkillGroup[] = [
     ],
   },
   {
-    label: "Cloud & DevOps",
+    label: "AI/ML",
+    caption: "Models & retrieval",
+    skills: [
+      { name: "PyTorch", icon: "pytorch" },
+      { name: "Hugging Face", icon: "huggingface" },
+      { name: "LangChain", icon: "langchain" },
+      { name: "LangGraph", icon: "langgraph" },
+      { name: "Voice AI", icon: "voice" },
+      { name: "Qdrant", icon: "qdrant" },
+      { name: "Pydantic", icon: "pydantic" },
+      { name: "Jupyter", icon: "jupyter" },
+    ],
+  },
+  {
+    label: "Tools & DevOps",
     caption: "Ship & run",
     skills: [
       { name: "Docker", icon: "docker" },
@@ -50,20 +64,6 @@ export const skillGroups: readonly SkillGroup[] = [
       { name: "Git", icon: "git" },
       { name: "Google Colab", icon: "googlecolab" },
       { name: "Postman", icon: "postman" },
-    ],
-  },
-  {
-    label: "AI / ML",
-    caption: "Models & retrieval",
-    skills: [
-      { name: "PyTorch", icon: "pytorch" },
-      { name: "Hugging Face", icon: "huggingface" },
-      { name: "LangChain", icon: "langchain" },
-      { name: "LangGraph", icon: "langgraph" },
-      { name: "OpenAI", icon: "openai" },
-      { name: "Qdrant", icon: "qdrant" },
-      { name: "Pydantic", icon: "pydantic" },
-      { name: "Jupyter", icon: "jupyter" },
     ],
   },
 ];
@@ -77,6 +77,7 @@ export const alsoFamiliar: readonly string[] = [
   "Cohere",
   "LangSmith",
   "RAG",
+  "TTS / STT",
   "LoRA / QLoRA",
   "TRL",
   "tool calling",

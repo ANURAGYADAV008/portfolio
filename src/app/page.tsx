@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Suspense } from "react";
+import { Fragment, Suspense } from "react";
 import {
   GitHubActivity,
   GitHubSkeleton,
@@ -99,7 +99,12 @@ export default function Home() {
           </div>
           <p className="mt-3 text-[12px] leading-5 text-muted">
             <span className="text-ink">Also:</span>{" "}
-            {alsoFamiliar.join(" · ")}
+            {alsoFamiliar.map((item, index) => (
+              <Fragment key={item}>
+                <span className="whitespace-nowrap">{item}</span>
+                {index < alsoFamiliar.length - 1 ? " · " : null}
+              </Fragment>
+            ))}
           </p>
         </section>
 
