@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   },
 };
 
-const themeScript = `try{if(localStorage.getItem('theme')==='dark'){document.documentElement.classList.add('dark')}}catch(e){}`;
+const themeScript = `try{if(localStorage.getItem('theme')==='light'){document.documentElement.classList.remove('dark')}else{document.documentElement.classList.add('dark')}}catch(e){document.documentElement.classList.add('dark')}`;
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
