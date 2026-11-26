@@ -34,7 +34,6 @@ export const site = {
   ],
   stats: [
     { value: "1,000+", label: "DSA problems solved" },
-    { value: "1800+", label: "LeetCode rating" },
   ],
 } as const;
 
